@@ -1,7 +1,5 @@
 /* RESET & BASE */
-*,
-*::before,
-*::after {
+*{
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -23,11 +21,6 @@
   --color-principal: #4f6ef7;
   --color-texto: #f0f0ec;
   --color-muted: #6b6b80;
-}
-
-html,
-body {
-  height: 100%;
 }
 
 body {
