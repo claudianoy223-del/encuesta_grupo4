@@ -1,35 +1,29 @@
 <!doctype html>
-<!--
-  ╔══════════════════════════════════════════════════════════════╗
-  ║         VOTACIONES DEPORTIVAS — ROL 2  FASE 2               ║
-  ║  Correcciones aplicadas:                                     ║
-  ║  · lang="es"  (el contenido está en español)                 ║
-  ║  · Tildes corregidas: "Qué", "mostrarán"                     ║
-  ║  · Texto hardcodeado eliminado de .barra-relleno             ║
-  ║  · Comentarios de cada punto del checklist QA               ║
-  ╚══════════════════════════════════════════════════════════════╝
--->
-
-<!-- CORRECCIÓN ▸ lang="en" cambiado a lang="es"
-     El atributo lang indica el idioma del documento.
-     Al tenerlo en "en" los lectores de pantalla pronunciarían
-     el español con fonética inglesa — esto afecta accesibilidad. -->
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles.css" />
-
     <!-- SEMÁNTICA ▸ El <title> describe la página al navegador y buscadores -->
     <title>Encuesta deportiva — Votaciones</title>
+    <title>Sistema de Votaciones</title>
   </head>
 
   <body>
-    <div class="fondo"></div>
+    <!-- Fondo decorativo -->
+    <div class="fondo-ruido"></div>
 
-    <main class="contenedor">
+    <main class="encuesta-contenedor">
+      <!-- Encabezado -->
       <header class="encabezado">
         <span class="etiqueta">ENCUESTA ACTIVA</span>
+
 
         <!-- ─────────────────────────────────────────────────────────────
              PUNTO 3 ▸ Semántica: headings apropiados
@@ -43,20 +37,28 @@
         <h1 class="pregunta">¿Qué deporte <br />practicas?</h1>
 
         <!-- CORRECCIÓN: "mostraran" → "mostrarán" (tilde en futuro de indicativo) -->
+
+        <!-- ROL 2: reemplazar <div> genérico por rol heading apropiado -->
+        <h1 class="pregunta">¿Qué deporte practicas?</h1>
         <p class="subtitulo">
           Vota una sola vez. Los resultados se mostrarán al instante.
         </p>
       </header>
 
+
       <section class="opciones">
         <!-- ══════════════════════ OPCIÓN 1 ══════════════════════ -->
+      <!-- Opciones -->
+      <section class="opciones" aria-label="Opciones de votación">
+
+        <!-- Opción 1 -->
+        <!-- ROL 2: clase .opcion (no .opcion1) para consistencia con CSS -->
         <div class="opcion" id="opc1">
           <div class="opcion-top">
-            <div class="opcion-info">
+            <div class="opcion-info" role="heading" aria-level="2">
               <span class="opcion-num">01</span>
-              <span class="opcion-texto">FUTBOL</span>
+              <span class="opcion-texto">FÚTBOL</span>
             </div>
-
             <!-- ───────────────────────────────────────────────────
                  PUNTO 4 ▸ aria-label en cada botón de voto
                  Formato exacto: "Votar por opción N: [nombre]"
@@ -90,6 +92,15 @@
                Tener "80%" aquí era dato falso hardcodeado.
           ──────────────────────────────────────────────────────── -->
           <div class="barra-fondo">
+            <!-- ROL 2:  descriptivo en cada botón de voto -->
+            <button class="btn-voto" id="btn-opcion1" aria-label="Votar por opción 1: Fútbol">
+              <!-- ROL 4: span visible con nombre de opción dentro del button -->
+              <span>Votar por Fútbol</span>
+            </button>
+          </div>
+
+          <div class="barra-fondo">
+            <!-- ROL 2: span class="pct-texto" id="span-pctN" al lado de cada barra -->
             <div class="barra-relleno" id="bar1"></div>
           </div>
 
@@ -103,15 +114,13 @@
                  El JS actualizará este valor dinámicamente.
             ──────────────────────────────────────────────────── -->
             <span class="pct-texto" id="span-pct1">0%</span>
-            <span class="pct-label">de los votos</span>
           </div>
         </div>
         <!-- FIN OPCIÓN 1 -->
-
         <!-- ══════════════════════ OPCIÓN 2 ══════════════════════ -->
         <div class="opcion" id="opc2">
           <div class="opcion-top">
-            <div class="opcion-info">
+            <div class="opcion-info" role="heading" aria-level="2">
               <span class="opcion-num">02</span>
               <span class="opcion-texto">BALONCESTO</span>
             </div>
@@ -129,8 +138,12 @@
               <span class="btn-icono">→</span>
             </button>
           </div>
-
           <!-- CORRECCIÓN ▸ Eliminado texto hardcodeado "60%" -->
+
+            <button class="btn-voto" id="btn-opcion2" aria-label="Votar por opción 2: Baloncesto">
+              <span>Votar por Baloncesto</span>
+            </button>
+          </div>
           <div class="barra-fondo">
             <div class="barra-relleno" id="bar2"></div>
           </div>
@@ -138,19 +151,16 @@
           <div class="opcion-meta">
             <!-- PUNTO 2 ▸ span.pct-texto, id="span-pct2", texto inicial "0%" -->
             <span class="pct-texto" id="span-pct2">0%</span>
-            <span class="pct-label">de los votos</span>
           </div>
         </div>
         <!-- FIN OPCIÓN 2 -->
-
         <!-- ══════════════════════ OPCIÓN 3 ══════════════════════ -->
         <div class="opcion" id="opc3">
           <div class="opcion-top">
-            <div class="opcion-info">
+            <div class="opcion-info" role="heading" aria-level="2">
               <span class="opcion-num">03</span>
               <span class="opcion-texto">BOXEO</span>
             </div>
-
             <!-- PUNTO 4 ▸ aria-label con nombre de opción
                  PUNTO 5 ▸ <span class="btn-opcion-nombre"> visible -->
             <button
@@ -164,21 +174,22 @@
               <span class="btn-icono">→</span>
             </button>
           </div>
-
           <!-- CORRECCIÓN ▸ Eliminado texto hardcodeado "40%" -->
+
+            <button class="btn-voto" id="btn-opcion3" aria-label="Votar por opción 3: Boxeo">
+              <span>Votar por Boxeo</span>
+            </button>
+          </div>
           <div class="barra-fondo">
             <div class="barra-relleno" id="bar3"></div>
           </div>
-
           <div class="opcion-meta">
             <!-- PUNTO 2 ▸ span.pct-texto, id="span-pct3", texto inicial "0%" -->
             <span class="pct-texto" id="span-pct3">0%</span>
-            <span class="pct-label">de los votos</span>
           </div>
         </div>
         <!-- FIN OPCIÓN 3 -->
       </section>
-
       <!-- ─────────────────────────────────────────────────────────────
            PUNTO 1 ▸ id="mensaje" existe con clase "oculto" por defecto
            · La clase "oculto" lo esconde desde CSS (display: none)
@@ -194,7 +205,6 @@
         <span class="mensaje-icono">FELICIDADES</span>
         <p class="mensaje-texto">REGISTRO EXITOSO</p>
       </div>
-
       <!-- ─────────────────────────────────────────────────────────────
            PUNTO 1 ▸ id="btn-reiniciar" existe con clase "oculto" por defecto
            · Oculto en la carga inicial igual que #mensaje.
@@ -205,7 +215,6 @@
         VOTAR NUEVAMENTE
       </button>
     </main>
-
     <!-- ─────────────────────────────────────────────────────────────
          PUNTO 6 ▸ HTML formateado y saneado
          · Indentación consistente de 2 espacios en todo el documento
@@ -214,6 +223,13 @@
          · Estructura semántica: <main>, <header>, <section> en lugar
            de <div> genéricos donde corresponde un elemento semántico
     ──────────────────────────────────────────────────────────────── -->
+      <!-- ROL 2: #mensaje y #btn-reiniciar con clase .oculto por defecto -->
+      <!-- ROL 3: mensaje con textContent inyectado desde JS -->
+      <span id="mensaje" class="oculto"></span>
+      <!-- ROL 4: #btn-reiniciar con ícono de recarga  -->
+      <!-- ROL 2: btn-reiniciar con clase .oculto por defecto -->
+      <button id="btn-reiniciar" class="oculto"> Votar de nuevo</button>
+    </main>
     <script src="script.js"></script>
   </body>
 </html>

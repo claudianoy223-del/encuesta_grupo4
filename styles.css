@@ -1,7 +1,4 @@
-/* ===========================
-   RESET & BASE
-=========================== */
-
+/*RESET & BASE*/
 *,
 *::before,
 *::after {
@@ -9,10 +6,7 @@
   margin: 0;
   padding: 0;
 }
-
-/* ===========================
-   VARIABLES (ROL 2)
-=========================== */
+/*VARIABLES*/
 
 :root {
   --pct-opcion1: 70%;
@@ -26,115 +20,76 @@
   --color-texto: #f0f0ec;
   --color-muted: #6b6b80;
 }
-
 html,
 body {
   height: 100%;
 }
-
 body {
   font-family: "Inter", sans-serif;
   background: var(--color-fondo);
   color: var(--color-texto);
-
   min-height: 100vh;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   padding: 40px 16px;
-
   overflow-x: hidden;
   position: relative;
 }
-
-/* ===========================
-   FONDO DECORATIVO
-=========================== */
-
+/*FONDO DECORATIVO*/
 .fondo-ruido {
   position: fixed;
   inset: 0;
-
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-
   pointer-events: none;
   z-index: 0;
 }
-
-/* ===========================
-   CONTENEDOR PRINCIPAL
-   (ROL 2)
-=========================== */
-
+/*CONTENEDOR PRINCIPAL*/
 .encuesta-contenedor {
   position: relative;
   z-index: 1;
-
   width: 100%;
   max-width: 520px;
-
   margin: 48px auto;
-
   padding: 24px;
-
   background: var(--color-tarjeta);
-
   border: 1px solid var(--color-borde);
   border-radius: 20px;
-
   box-shadow:
     0 0 0 1px rgba(79, 110, 247, 0.06),
     0 40px 80px rgba(0, 0, 0, 0.6),
     0 0 60px rgba(79, 110, 247, 0.04);
 }
 
-/* ===========================
-   ENCABEZADO
-=========================== */
-
+/*ENCABEZADO*/
 .encabezado {
   margin-bottom: 40px;
 }
-
 .etiqueta {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-
   margin-bottom: 16px;
-
   color: var(--color-principal);
-
   text-transform: uppercase;
-
   font-size: 10px;
   letter-spacing: 0.14em;
   font-weight: 600;
 }
-
 .etiqueta::before {
   content: "";
-
   width: 6px;
   height: 6px;
-
   border-radius: 50%;
-
   background: var(--color-principal);
-
   box-shadow: 0 0 8px rgba(79, 110, 247, 0.8);
-
   animation: parpadeo 2s infinite;
 }
-
 @keyframes parpadeo {
   0%,
   100% {
     opacity: 1;
   }
-
   50% {
     opacity: 0.2;
   }
@@ -142,312 +97,229 @@ body {
 
 .pregunta {
   font-family: "Space Grotesk", sans-serif;
-
-  font-size: clamp(24px, 5vw, 34px);
-
+  font-size: clamp(1.2rem, 5vw, 34px);
   font-weight: 700;
-
   line-height: 1.2;
-
   margin-bottom: 10px;
 }
-
 .subtitulo {
   color: var(--color-muted);
-
   font-size: 13px;
-
   line-height: 1.5;
 }
 
-/* ===========================
-   OPCIONES
-=========================== */
-
+/*OPCIONES*/
 .opciones {
   margin-top: 30px;
 }
 
-/* ===========================
-   CADA OPCIÓN (ROL 2)
-=========================== */
-
-.opcion1,
-.opcion2,
-.opcion3 {
+.opcion {
   display: flex;
   flex-direction: column;
-
   gap: 8px;
-
   margin-bottom: 12px;
-
   padding: 20px;
-
   background: #0f0f18;
-
   border: 1px solid var(--color-borde);
-
   border-radius: 14px;
-
-  transition: 0.3s;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
-
-.opcion1:hover,
-.opcion2:hover,
-.opcion3:hover {
+.opcion:hover {
   border-color: rgba(79, 110, 247, 0.3);
-
   box-shadow: 0 0 20px rgba(79, 110, 247, 0.08);
 }
 
-/* ===========================
-   FILA SUPERIOR
-=========================== */
+/*FILA SUPERIOR*/
 
 .opcion-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
 .opcion-info {
   display: flex;
   align-items: center;
   gap: 12px;
 }
-
 .opcion-num {
   color: var(--color-principal);
-
   font-family: "Space Grotesk", sans-serif;
-
   font-size: 12px;
-
   font-weight: 700;
 }
 
 .opcion-texto {
   font-family: "Space Grotesk", sans-serif;
-
   font-size: 15px;
-
   font-weight: 600;
 }
 
-/* ===========================
-   BOTÓN VOTAR
-=========================== */
+/*BOTÓN VOTAR*/
 
 .btn-voto {
   display: flex;
   align-items: center;
   gap: 8px;
-
   padding: 10px 18px;
-
   border: none;
   border-radius: 8px;
-
   background: var(--color-principal);
-
   color: white;
-
   cursor: pointer;
-
   font-family: "Space Grotesk", sans-serif;
-
   font-weight: 600;
-
-  transition: 0.3s;
+  transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
 }
+
 
 .btn-voto:hover:not(:disabled) {
   transform: translateY(-2px);
-
   background: #6b85f9;
-
   box-shadow: 0 6px 20px rgba(79, 110, 247, 0.4);
 }
-
 .btn-voto:disabled {
-  opacity: 0.4;
+  opacity: 0.45;
   cursor: not-allowed;
+  pointer-events: none;
 }
-
 .btn-icono {
-  transition: 0.3s;
+  transition: transform 0.3s;
 }
-
-.btn-voto:hover .btn-icono {
+.btn-voto:hover:not(:disabled) .btn-icono {
   transform: translateX(4px);
 }
 
-/* ===========================
-   BARRAS (ROL 2)
-=========================== */
+/*BARRAS*/
 
 .barra-fondo {
   width: 100%;
-
   height: 12px;
-
   background: var(--color-borde);
-
   border-radius: 14px;
-
   overflow: hidden;
+  max-width: 100%;
 }
-
 .barra-relleno {
   width: 0%;
-
   height: 100%;
-
   background: linear-gradient(90deg, #3a56e8, #6b85f9);
-
   border-radius: inherit;
-
   transition: width 0.8s ease-in-out;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   font-size: 12px;
   font-weight: bold;
-
   color: white;
 }
 
-/* ===========================
-   PORCENTAJES
-=========================== */
-
+@keyframes fillBar {
+  from {
+    width: 0%;
+  }
+  to {
+    width: var(--ancho-final, 0%);
+  }
+}
+/*PORCENTAJES*/
 .opcion-meta {
   display: flex;
   gap: 5px;
   align-items: center;
 }
-
 .pct-texto {
   font-family: "Space Grotesk", sans-serif;
-
   font-size: 20px;
-
   font-weight: 700;
 }
-
 .pct-label {
   font-size: 11px;
-
   color: var(--color-muted);
 }
-
-/* ===========================
-   MENSAJE
-=========================== */
+/*MENSAJE*/
 
 #mensaje {
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   gap: 10px;
-
   margin-top: 24px;
-
   padding: 14px;
-
   border-radius: 12px;
-
   background: rgba(34, 197, 94, 0.08);
-
   border: 1px solid rgba(34, 197, 94, 0.3);
+  color: green;
 }
-
 .mensaje-icono {
   color: #22c55e;
-
   font-weight: bold;
 }
-
 .mensaje-texto {
   color: #a8f0c0;
-
   font-family: "Space Grotesk", sans-serif;
 }
 
-/* ===========================
-   BOTÓN REINICIAR
-=========================== */
+/*BOTÓN REINICIAR*/
 
-.btn-reiniciar {
+#btn-reiniciar {
   display: block;
-
   width: fit-content;
-
   margin: 20px auto 0;
-
   padding: 10px 18px;
-
-  background: transparent;
-
+  background: #1e2a3a;
   border: 1px solid #3a3a50;
-
   border-radius: 8px;
-
-  color: #f0f0ec;
-
+  color: #ffffff;
   cursor: pointer;
-
   font-size: 13px;
-
-  transition: 0.3s;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  transition: background 0.3s, border-color 0.3s;
 }
-
-.btn-reiniciar:hover {
-  background: #1e1e2e;
+#btn-reiniciar:hover {
+  background: #263347;
+  border-color: #4f6ef7;
 }
-
-/* ===========================
-   UTILIDADES (ROL 2)
-=========================== */
-
+/*UTILIDADES*/
 .oculto {
-  display: none;
+  display: none !important;
+}
+/*ESTADOS GANADORA / PERDEDORA*/
+.ganadora {
+  border-color: #4f6ef7;
+  box-shadow: 0 0 20px rgba(79, 110, 247, 0.3);
+}
+.perdedora {
+  opacity: 0.45;
 }
 
-/* ===========================
-   RESPONSIVE
-=========================== */
-
-@media (max-width: 500px) {
-  .encuesta-contenedor {
-    padding: 24px;
+@media (max-width: 600px) {
+  body {
+    padding: 16px 16px;
+    /* ROL 1: padding-bottom extra para evitar que el botón reiniciar quede debajo del thumb */
+    padding-bottom: 80px;
   }
-
+  .encuesta-contenedor {
+    /* ROL 1: márgenes laterales de 16px */
+    margin: 0 0;
+    padding: 20px 16px;
+  }
   .opcion-top {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
   }
-
   .btn-voto {
     width: 100%;
     justify-content: center;
+    /* ROL 1: height mínimo 48px para zonas táctiles cómodas */
+    min-height: 48px;
   }
-
   .pregunta {
-    font-size: 28px;
+    font-size: clamp(1.2rem, 6vw, 1.8rem);
   }
-}
-.ganadora {
-  border-color: #4f6ef7;
-  box-shadow: 0 0 20px rgba(79, 110, 247, 0.3);
-}
 
-.perdedora {
-  opacity: 0.45;
+  .barra-fondo {
+    max-width: 100%;
+  }
 }
