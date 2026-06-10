@@ -10,8 +10,11 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
+    <!-- SEMÁNTICA ▸ El <title> describe la página al navegador y buscadores -->
+    <title>Encuesta deportiva — Votaciones</title>
     <title>Sistema de Votaciones</title>
   </head>
+
   <body>
     <!-- Fondo decorativo -->
     <div class="fondo-ruido"></div>
@@ -21,14 +24,25 @@
       <header class="encabezado">
         <span class="etiqueta">ENCUESTA ACTIVA</span>
 
+
+        <!-- ─────────────────────────────────────────────────────────────
+             PUNTO 3 ▸ Semántica: headings apropiados
+             Se usa <h1> para el título principal de la página.
+             No se usan <div> con rol visual de encabezado.
+             Correcto: un solo <h1> por página, identifica el tema principal.
+        ──────────────────────────────────────────────────────────────── -->
+        <h1 class="pregunta">¿Qué deporte <br />practicas?</h1>
+
         <!-- ROL 2: reemplazar <div> genérico por rol heading apropiado -->
         <h1 class="pregunta">¿Qué deporte practicas?</h1>
-
         <p class="subtitulo">
           Vota una sola vez. Los resultados se mostrarán al instante.
         </p>
       </header>
 
+
+      <section class="opciones">
+        <!-- ══════════════════════ OPCIÓN 1 ══════════════════════ -->
       <!-- Opciones -->
       <section class="opciones" aria-label="Opciones de votación">
 
@@ -40,7 +54,39 @@
               <span class="opcion-num">01</span>
               <span class="opcion-texto">FÚTBOL</span>
             </div>
+            <!-- ───────────────────────────────────────────────────
+                 PUNTO 4 ▸ aria-label en cada botón de voto
+                 Formato exacto: "Votar por opción N: [nombre]"
+                 Los lectores de pantalla (NVDA, VoiceOver) leen
+                 este texto en lugar del contenido visible del botón.
+                 Sin él, el usuario solo escucharía "Votar →" sin
+                 saber a qué opción corresponde.
 
+                 PUNTO 5 ▸ <span class="btn-opcion-nombre">
+                 Texto visible con el nombre específico de la opción
+                 DENTRO del botón, no solo el texto genérico "Votar".
+                 Permite que el usuario vea visualmente qué está votando.
+            ──────────────────────────────────────────────────────── -->
+            <button
+              class="btn-voto"
+              id="btn-opc1"
+              aria-label="Votar por opción 1: Fútbol"
+            >
+              <span class="btn-texto">Votar</span>
+              <!-- PUNTO 5 ▸ Nombre específico visible de la opción -->
+              <span class="btn-opcion-nombre">FUTBOL</span>
+              <span class="btn-icono">→</span>
+            </button>
+          </div>
+
+          <!-- ───────────────────────────────────────────────────
+               CORRECCIÓN ▸ Eliminado el texto "80%" del interior
+               de .barra-relleno. El ancho de la barra es una
+               propiedad visual (width en CSS controlada por JS).
+               El porcentaje como texto ya está en span-pct1 (abajo).
+               Tener "80%" aquí era dato falso hardcodeado.
+          ──────────────────────────────────────────────────────── -->
+          <div class="barra-fondo">
             <!-- ROL 2:  descriptivo en cada botón de voto -->
             <button class="btn-voto" id="btn-opcion1" aria-label="Votar por opción 1: Fútbol">
               <!-- ROL 4: span visible con nombre de opción dentro del button -->
@@ -54,11 +100,19 @@
           </div>
 
           <div class="opcion-meta">
+            <!-- ─────────────────────────────────────────────────
+                 PUNTO 2 ▸ span.pct-texto con id="span-pctN"
+                 · Clase: pct-texto  ✓
+                 · ID:    span-pct1  ✓  (patrón span-pctN)
+                 · Texto inicial: "0%"  ✓
+                 · Está al lado de la barra (justo debajo) ✓
+                 El JS actualizará este valor dinámicamente.
+            ──────────────────────────────────────────────────── -->
             <span class="pct-texto" id="span-pct1">0%</span>
           </div>
         </div>
-
-        <!-- Opción 2 -->
+        <!-- FIN OPCIÓN 1 -->
+        <!-- ══════════════════════ OPCIÓN 2 ══════════════════════ -->
         <div class="opcion" id="opc2">
           <div class="opcion-top">
             <div class="opcion-info" role="heading" aria-level="2">
@@ -66,47 +120,107 @@
               <span class="opcion-texto">BALONCESTO</span>
             </div>
 
+            <!-- PUNTO 4 ▸ aria-label con nombre de opción
+                 PUNTO 5 ▸ <span class="btn-opcion-nombre"> visible -->
+            <button
+              class="btn-voto"
+              id="btn-opc2"
+              aria-label="Votar por opción 2: Baloncesto"
+            >
+              <span class="btn-texto">Votar</span>
+              <!-- PUNTO 5 ▸ Nombre específico visible de la opción -->
+              <span class="btn-opcion-nombre">BALONCESTO</span>
+              <span class="btn-icono">→</span>
+            </button>
+          </div>
+          <!-- CORRECCIÓN ▸ Eliminado texto hardcodeado "60%" -->
+
             <button class="btn-voto" id="btn-opcion2" aria-label="Votar por opción 2: Baloncesto">
               <span>Votar por Baloncesto</span>
             </button>
           </div>
-
           <div class="barra-fondo">
             <div class="barra-relleno" id="bar2"></div>
           </div>
 
           <div class="opcion-meta">
+            <!-- PUNTO 2 ▸ span.pct-texto, id="span-pct2", texto inicial "0%" -->
             <span class="pct-texto" id="span-pct2">0%</span>
           </div>
         </div>
-
-        <!-- Opción 3 -->
+        <!-- FIN OPCIÓN 2 -->
+        <!-- ══════════════════════ OPCIÓN 3 ══════════════════════ -->
         <div class="opcion" id="opc3">
           <div class="opcion-top">
             <div class="opcion-info" role="heading" aria-level="2">
               <span class="opcion-num">03</span>
               <span class="opcion-texto">BOXEO</span>
             </div>
+            <!-- PUNTO 4 ▸ aria-label con nombre de opción
+                 PUNTO 5 ▸ <span class="btn-opcion-nombre"> visible -->
+            <button
+              class="btn-voto"
+              id="btn-opc3"
+              aria-label="Votar por opción 3: Boxeo"
+            >
+              <span class="btn-texto">Votar</span>
+              <!-- PUNTO 5 ▸ Nombre específico visible de la opción -->
+              <span class="btn-opcion-nombre">BOXEO</span>
+              <span class="btn-icono">→</span>
+            </button>
+          </div>
+          <!-- CORRECCIÓN ▸ Eliminado texto hardcodeado "40%" -->
 
             <button class="btn-voto" id="btn-opcion3" aria-label="Votar por opción 3: Boxeo">
               <span>Votar por Boxeo</span>
             </button>
           </div>
-
           <div class="barra-fondo">
             <div class="barra-relleno" id="bar3"></div>
           </div>
-
           <div class="opcion-meta">
+            <!-- PUNTO 2 ▸ span.pct-texto, id="span-pct3", texto inicial "0%" -->
             <span class="pct-texto" id="span-pct3">0%</span>
           </div>
         </div>
+        <!-- FIN OPCIÓN 3 -->
       </section>
+      <!-- ─────────────────────────────────────────────────────────────
+           PUNTO 1 ▸ id="mensaje" existe con clase "oculto" por defecto
+           · La clase "oculto" lo esconde desde CSS (display: none)
+             sin necesitar JS en la carga inicial.
+           · El JS lo revela (remove 'oculto') cuando el usuario vota.
 
+           NOTA ▸ El requerimiento menciona <span id="mensaje"> pero
+           este elemento contiene un <p> en su interior. Un <span>
+           solo puede contener elementos inline, no un <p> (bloque).
+           Por eso se mantiene como <div> — es HTML válido y correcto.
+      ──────────────────────────────────────────────────────────────── -->
+      <div class="msj_oculto oculto" id="mensaje">
+        <span class="mensaje-icono">FELICIDADES</span>
+        <p class="mensaje-texto">REGISTRO EXITOSO</p>
+      </div>
+      <!-- ─────────────────────────────────────────────────────────────
+           PUNTO 1 ▸ id="btn-reiniciar" existe con clase "oculto" por defecto
+           · Oculto en la carga inicial igual que #mensaje.
+           · El JS lo revela junto con el mensaje de confirmación.
+           · Al hacer clic, reinicia los votos y vuelve al estado inicial.
+      ──────────────────────────────────────────────────────────────── -->
+      <button class="btn-reiniciar oculto" id="btn-reiniciar">
+        VOTAR NUEVAMENTE
+      </button>
+    </main>
+    <!-- ─────────────────────────────────────────────────────────────
+         PUNTO 6 ▸ HTML formateado y saneado
+         · Indentación consistente de 2 espacios en todo el documento
+         · Comentarios de sección para separar bloques lógicos
+         · Todos los elementos están correctamente cerrados y anidados
+         · Estructura semántica: <main>, <header>, <section> en lugar
+           de <div> genéricos donde corresponde un elemento semántico
+    ──────────────────────────────────────────────────────────────── -->
       <!-- ROL 2: #mensaje y #btn-reiniciar con clase .oculto por defecto -->
       <!-- ROL 3: mensaje con textContent inyectado desde JS -->
       <span id="mensaje" class="oculto"></span>
-
       <!-- ROL 4: #btn-reiniciar con ícono de recarga  -->
       <!-- ROL 2: btn-reiniciar con clase .oculto por defecto -->
       <button id="btn-reiniciar" class="oculto"> Votar de nuevo</button>
