@@ -1,4 +1,4 @@
-/*RESET & BASE*/
+/* RESET & BASE */
 *,
 *::before,
 *::after {
@@ -6,8 +6,12 @@
   margin: 0;
   padding: 0;
 }
-/*VARIABLES*/
 
+/* ============================================================
+   fase 1 — ROL 2, Punto 6
+   Variables :root con paleta de colores y porcentajes iniciales
+   --pct-opcion1: 70%, --pct-opcion2: 20%, --pct-opcion3: 10%
+   ============================================================ */
 :root {
   --pct-opcion1: 70%;
   --pct-opcion2: 20%;
@@ -20,10 +24,12 @@
   --color-texto: #f0f0ec;
   --color-muted: #6b6b80;
 }
+
 html,
 body {
   height: 100%;
 }
+
 body {
   font-family: "Inter", sans-serif;
   background: var(--color-fondo);
@@ -36,7 +42,8 @@ body {
   overflow-x: hidden;
   position: relative;
 }
-/*FONDO DECORATIVO*/
+
+/* FONDO DECORATIVO */
 .fondo-ruido {
   position: fixed;
   inset: 0;
@@ -44,7 +51,12 @@ body {
   pointer-events: none;
   z-index: 0;
 }
-/*CONTENEDOR PRINCIPAL*/
+
+/* ============================================================
+   TALLER 1 — ROL 2, Punto 2
+   Centrar el .encuesta-contenedor: max-width, margin auto,
+   padding y box-shadow para efecto de tarjeta
+   ============================================================ */
 .encuesta-contenedor {
   position: relative;
   z-index: 1;
@@ -61,10 +73,11 @@ body {
     0 0 60px rgba(79, 110, 247, 0.04);
 }
 
-/*ENCABEZADO*/
+/* ENCABEZADO */
 .encabezado {
   margin-bottom: 40px;
 }
+
 .etiqueta {
   display: inline-flex;
   align-items: center;
@@ -76,6 +89,7 @@ body {
   letter-spacing: 0.14em;
   font-weight: 600;
 }
+
 .etiqueta::before {
   content: "";
   width: 6px;
@@ -85,6 +99,7 @@ body {
   box-shadow: 0 0 8px rgba(79, 110, 247, 0.8);
   animation: parpadeo 2s infinite;
 }
+
 @keyframes parpadeo {
   0%,
   100% {
@@ -95,6 +110,11 @@ body {
   }
 }
 
+/* ============================================================
+   TALLER 1 — ROL 3, Punto 3
+   Tipografiar la pregunta con font-size grande y font-weight 700
+   Se usa clamp() para escalado fluido entre tamaños de pantalla
+   ============================================================ */
 .pregunta {
   font-family: "Space Grotesk", sans-serif;
   font-size: clamp(1.2rem, 5vw, 34px);
@@ -102,13 +122,18 @@ body {
   line-height: 1.2;
   margin-bottom: 10px;
 }
+
 .subtitulo {
   color: var(--color-muted);
   font-size: 13px;
   line-height: 1.5;
 }
 
-/*OPCIONES*/
+/* ============================================================
+   TALLER 1 — ROL 2, Punto 3
+   Layout de cada .opcion: display flex en columna con gap de 8px
+   y margin-bottom para separar las opciones entre sí
+   ============================================================ */
 .opciones {
   margin-top: 30px;
 }
@@ -124,23 +149,25 @@ body {
   border-radius: 14px;
   transition: border-color 0.3s, box-shadow 0.3s;
 }
+
 .opcion:hover {
   border-color: rgba(79, 110, 247, 0.3);
   box-shadow: 0 0 20px rgba(79, 110, 247, 0.08);
 }
 
-/*FILA SUPERIOR*/
-
+/* FILA SUPERIOR */
 .opcion-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .opcion-info {
   display: flex;
   align-items: center;
   gap: 12px;
 }
+
 .opcion-num {
   color: var(--color-principal);
   font-family: "Space Grotesk", sans-serif;
@@ -154,8 +181,11 @@ body {
   font-weight: 600;
 }
 
-/*BOTÓN VOTAR*/
-
+/* ============================================================
+   TALLER 1 — ROL 3, Punto 2
+   Estilizar .btn-voto: padding, fondo primario, color blanco,
+   border: none, border-radius y cursor: pointer
+   ============================================================ */
 .btn-voto {
   display: flex;
   align-items: center;
@@ -171,34 +201,64 @@ body {
   transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
 }
 
-
+/* ============================================================
+   TALLER 2 — ROL 4, Punto 2
+   Usar :not(:disabled):hover para que el hover solo aplique
+   cuando el botón está activo (no deshabilitado)
+   ============================================================ */
 .btn-voto:hover:not(:disabled) {
   transform: translateY(-2px);
   background: #6b85f9;
   box-shadow: 0 6px 20px rgba(79, 110, 247, 0.4);
 }
+
+/* ============================================================
+   TALLER 1 — ROL 3, Punto 4 / TALLER 2 — ROL 4, Punto 1
+   Pseudo-clase :disabled: opacity reducida, cursor: not-allowed
+   y pointer-events: none para anular completamente la interacción
+   ============================================================ */
 .btn-voto:disabled {
   opacity: 0.45;
   cursor: not-allowed;
   pointer-events: none;
 }
+
 .btn-icono {
   transition: transform 0.3s;
 }
+
 .btn-voto:hover:not(:disabled) .btn-icono {
   transform: translateX(4px);
 }
 
-/*BARRAS*/
-
+/* ============================================================
+   TALLER 1 — ROL 2, Punto 4
+   .barra-fondo: height, width 100%, background gris,
+   border-radius: 14px y overflow: hidden para contener el relleno
+   ============================================================ */
 .barra-fondo {
   width: 100%;
   height: 12px;
   background: var(--color-borde);
   border-radius: 14px;
   overflow: hidden;
+
+  /* TALLER 2 — ROL 1, Punto 4
+     max-width: 100% asegura que la barra no desborde
+     el contenedor en ningún dispositivo */
   max-width: 100%;
 }
+
+/* ============================================================
+   TALLER 1 — ROL 2, Punto 5
+   .barra-relleno: width: 0% inicial, height: 100%,
+   background azul/primario y border-radius heredado
+   ============================================================
+
+   TALLER 1 — ROL 3, Punto 1
+   transition: width 0.8s ease-in-out para que la animación
+   de llenado sea fluida al cambiar el width desde JS
+   ============================================================ */
 .barra-relleno {
   width: 0%;
   height: 100%;
@@ -213,6 +273,11 @@ body {
   color: white;
 }
 
+/* ============================================================
+   TALLER 2 — ROL 4, Punto 3
+   @keyframes fillBar: anima el width de 0% al valor final
+   definido en --ancho-final; alternativa más robusta a transition
+   ============================================================ */
 @keyframes fillBar {
   from {
     width: 0%;
@@ -221,23 +286,30 @@ body {
     width: var(--ancho-final, 0%);
   }
 }
-/*PORCENTAJES*/
+
+/* PORCENTAJES */
 .opcion-meta {
   display: flex;
   gap: 5px;
   align-items: center;
 }
+
 .pct-texto {
   font-family: "Space Grotesk", sans-serif;
   font-size: 20px;
   font-weight: 700;
 }
+
 .pct-label {
   font-size: 11px;
   color: var(--color-muted);
 }
-/*MENSAJE*/
 
+/* ============================================================
+   TALLER 1 — ROL 3, Punto 5
+   Estilizar #mensaje: fondo verde claro, color verde oscuro,
+   padding, border-radius y text-align center
+   ============================================================ */
 #mensaje {
   display: flex;
   align-items: center;
@@ -250,17 +322,22 @@ body {
   border: 1px solid rgba(34, 197, 94, 0.3);
   color: green;
 }
+
 .mensaje-icono {
   color: #22c55e;
   font-weight: bold;
 }
+
 .mensaje-texto {
   color: #a8f0c0;
   font-family: "Space Grotesk", sans-serif;
 }
 
-/*BOTÓN REINICIAR*/
-
+/* ============================================================
+   TALLER 1 — ROL 3, Punto 6 / TALLER 2 — ROL 4, Punto 5
+   Estilizar #btn-reiniciar de forma diferenciada:
+   fondo gris azulado, borde marcado y tamaño menor que .btn-voto
+   ============================================================ */
 #btn-reiniciar {
   display: block;
   width: fit-content;
@@ -276,49 +353,74 @@ body {
   font-weight: 600;
   transition: background 0.3s, border-color 0.3s;
 }
+
 #btn-reiniciar:hover {
   background: #263347;
   border-color: #4f6ef7;
 }
-/*UTILIDADES*/
+
+/* ============================================================
+   TALLER 1 — ROL 2, Punto 6
+   Clase utilitaria .oculto con display: none
+   Se agrega/quita desde JS para mostrar u ocultar elementos
+   ============================================================ */
 .oculto {
   display: none !important;
 }
-/*ESTADOS GANADORA / PERDEDORA*/
+
+/* ESTADOS GANADORA / PERDEDORA */
 .ganadora {
   border-color: #4f6ef7;
   box-shadow: 0 0 20px rgba(79, 110, 247, 0.3);
 }
+
 .perdedora {
   opacity: 0.45;
 }
 
+/* ============================================================
+   TALLER 2 — ROL 1, Punto 1
+   @media para pantallas ≤600px con márgenes y padding reducidos
+   ============================================================ */
 @media (max-width: 600px) {
   body {
     padding: 16px 16px;
-    /* ROL 1: padding-bottom extra para evitar que el botón reiniciar quede debajo del thumb */
+
+    /* TALLER 2 — ROL 1, Punto 5
+       padding-bottom extra para evitar que el botón reiniciar
+       quede debajo del área del pulgar en móvil */
     padding-bottom: 80px;
   }
+
   .encuesta-contenedor {
-    /* ROL 1: márgenes laterales de 16px */
+    /* TALLER 2 — ROL 1, Punto 1
+       Márgenes laterales de 16px y padding interno reducido */
     margin: 0 0;
     padding: 20px 16px;
   }
+
   .opcion-top {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
   }
+
+  /* TALLER 2 — ROL 1, Punto 3
+     Aumentar height mínimo de botones a 48px para zonas táctiles cómodas */
   .btn-voto {
     width: 100%;
     justify-content: center;
-    /* ROL 1: height mínimo 48px para zonas táctiles cómodas */
     min-height: 48px;
   }
+
+  /* TALLER 2 — ROL 1, Punto 2
+     Reducir font-size del título usando clamp() para escalado fluido en móvil */
   .pregunta {
     font-size: clamp(1.2rem, 6vw, 1.8rem);
   }
 
+  /* TALLER 2 — ROL 1, Punto 4
+     max-width: 100% garantiza que la barra no desborde en pantallas pequeñas */
   .barra-fondo {
     max-width: 100%;
   }
